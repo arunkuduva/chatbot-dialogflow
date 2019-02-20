@@ -16,9 +16,16 @@ class App extends Component {
           </ul>
           <input
             type="text"
-            onKeyDown={e =>
-              e.keyCode === 13 ? sendMessage(e.target.value) : null
-            }
+            onKeyDown={e => {
+              let result = false;
+              if (e.keyCode === 13) {
+                sendMessage(e.target.value);
+                e.target.value = null;
+                result = true;
+              }
+
+              return result;
+            }}
           />
         </div>
       </div>
